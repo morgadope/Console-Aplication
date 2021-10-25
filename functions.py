@@ -5,23 +5,32 @@ from os import system
 
 # Variáveis da classe
 clientes = []
-n = 0
 
 
-# Cadastrar usuário
-def cadastrar(nome, idade, id):
-    novo_cliente = User(nome, idade, id)
+# Cadastrar cliente
+def cadastrar(nome, idade):
+    novo_cliente = User(nome, idade)
     clientes.append(novo_cliente)
+
+
+# Excluir cliente
+def excluir_cliente():
+    system('cls')
+    exibir_clientes_cadastrados()
+    nome = input('Qual nome do cliente que deseja remover? ')
+    for cliente in clientes:
+        if cliente.nome == nome:
+            clientes.remove(cliente)
+    print(f'[green] cliente {nome} removido com sucesso!![/]')
+    exibir_clientes_cadastrados()
 
 
 # Menu cadastro
 def menu_cadastro():
-    cabecalho_clientes_cadastrados()
+    head_clientes_cadastrados()
     nome = input('Qual o nome do cliente: ')
     idade = input('Qual a idade do cliente: ')
-    id = n + 1
-    cadastrar(nome, idade, id)
-    print(id)
+    cadastrar(nome, idade)
     print(f'[green]cliente: {nome},tem {idade} anos Cadastrado com sucesso!![/]\n')
     print(f'{len(clientes)} clientes cadastrado')
     sleep(3)
@@ -30,14 +39,14 @@ def menu_cadastro():
 
 # Consulta de usuário
 def menu_consulta():
-    cabecalho_clientes_cadastrados()
+    head_clientes_cadastrados()
     for cliente in clientes:
         print(f'nome: {cliente.nome}\nidade: {cliente.idade}')
 
 
 # Menu de buscas de clientes
 def show_menu_cliente():
-    cabecalho_menu_buscar()
+    head_menu_buscar()
     print('''
     [1] Buscar por nome
     [2] Buscar por idade
@@ -82,7 +91,7 @@ def cliente_nome(nome):
 
 # Criar menu de opções
 def show_menu():
-    cabecalho_sistema_login()
+    head_sistema_login()
     print('''
 [1] Cadastrar novo cliente
 [2] Menu de busca
@@ -125,18 +134,6 @@ def menu_sair():
     system('cls')
 
 
-# Exclusão de cliente
-def excluir_cliente():
-    system('cls')
-    exibir_clientes_cadastrados()
-    nome = input('Qual nome do cliente que deseja remover? ')
-    for cliente in clientes:
-        if cliente.nome == nome:
-            clientes.remove(cliente)
-    print(f'[green] cliente {nome} removido com sucesso!![/]')
-    exibir_clientes_cadastrados()
-
-
 def menu_edit_cadastro():
     system('cls')
     print('''
@@ -156,7 +153,7 @@ def menu_edit_cadastro():
 
 # Exibi clientes cadastrados no banco
 def exibir_clientes_cadastrados():
-    cabecalho_clientes_cadastrados()
+    head_clientes_cadastrados()
     for cliente in clientes:
         print()
         print(f'nome: {cliente.nome}\nidade: {cliente.idade}\n')
@@ -164,7 +161,7 @@ def exibir_clientes_cadastrados():
 
 # Cabeçalhos
 
-def cabecalho_clientes_cadastrados():
+def head_clientes_cadastrados():
     system('cls')
     print('[green]-----[/]' * 10)
     print()
@@ -175,7 +172,7 @@ def cabecalho_clientes_cadastrados():
     print()
 
 
-def cabecalho_sistema_login():
+def head_sistema_login():
     system('cls')
     print('[green]-----[/]' * 10)
     print()
@@ -186,7 +183,7 @@ def cabecalho_sistema_login():
     print()
 
 
-def cabecalho_cadastro_cliente():
+def head_cadastro_cliente():
     system('cls')
     print('[green]-----[/]' * 10)
     print()
@@ -197,7 +194,7 @@ def cabecalho_cadastro_cliente():
     print()
 
 
-def cabecalho_menu_buscar():
+def head_menu_buscar():
     system('cls')
     print('[green]-----[/]' * 10)
     print()
