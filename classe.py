@@ -3,3 +3,4 @@ class User:
         self.nome = nome
         self.idade = idade
         self.id = id
+

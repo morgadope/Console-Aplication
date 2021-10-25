@@ -130,7 +130,9 @@ def excluir_cliente():
     system('cls')
     exibir_clientes_cadastrados()
     nome = input('Qual nome do cliente que deseja remover? ')
-    clientes.remove(nome)
+    for cliente in clientes:
+        if cliente.nome == nome:
+            clientes.remove(cliente)
     print(f'[green] cliente {nome} removido com sucesso!![/]')
     exibir_clientes_cadastrados()
 
