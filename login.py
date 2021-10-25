@@ -4,6 +4,7 @@ from classe import User
 from time import sleep
 from functions import *
 
+
 while True:
     options = show_menu()
     if options.isnumeric():
@@ -23,6 +24,6 @@ while True:
         print('[red] OPÇÃO INVÁLIDA!!![/]')
 
     if input('Deseja continuar [s]im [n]ao: ') == 'n':
-        system('cls')
+        menu_sair()
         break
     system('cls')
