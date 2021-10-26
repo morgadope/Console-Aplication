@@ -15,7 +15,6 @@ def cadastrar(nome, idade):
 
 # Excluir cliente
 def excluir_cliente():
-    system('cls')
     exibir_clientes_cadastrados()
     nome = input('Qual nome do cliente que deseja remover? ')
     for cliente in clientes:
@@ -153,6 +152,7 @@ def menu_edit_cadastro():
 
 # Exibi clientes cadastrados no banco
 def exibir_clientes_cadastrados():
+    system('cls')
     head_clientes_cadastrados()
     for cliente in clientes:
         print()
