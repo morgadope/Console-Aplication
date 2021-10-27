@@ -2,6 +2,7 @@ from time import sleep
 from rich import print
 from classe import *
 from os import system
+import numpy as np
 
 # Variáveis da classe
 clientes = []
@@ -24,14 +25,25 @@ def excluir_cliente():
     exibir_clientes_cadastrados()
 
 
+def editar_cliente():
+    exibir_clientes_cadastrados()
+    nome = input('Qual nome do cliente que deseja editar? ')
+    novo_nome = input('Qual o novo nome?')
+    for cliente in clientes:
+        if cliente.nome == nome:
+            cliente.nome = novo_nome
+    print(f'[green] cliente {nome} editado com sucesso!![/]')
+    exibir_clientes_cadastrados()
+
+
 # Menu cadastro
 def menu_cadastro():
     head_clientes_cadastrados()
     nome = input('Qual o nome do cliente: ')
     idade = input('Qual a idade do cliente: ')
     cadastrar(nome, idade)
-    print(f'[green]cliente: {nome},tem {idade} anos Cadastrado com sucesso!![/]\n')
-    print(f'{len(clientes)} clientes cadastrado')
+    print(f' USER ID: {len(clientes)}\n NOME: {nome}\n IDADE: {idade}\n')
+    print('[green]Cadastrado com sucesso![/]')
     sleep(3)
     system('cls')
 
@@ -138,7 +150,8 @@ def menu_edit_cadastro():
     print('''
         [green][bold]Menu de edição:[/][/]
      [1] Excluir cadastro por nome
-     [2] Excluir cadastro por idade
+     [2] Editar cadastro
+     [3] Média clientes
      [0] Voltar para  o inicio.     
      ''')
 
@@ -147,7 +160,9 @@ def menu_edit_cadastro():
     if option == '1':
         excluir_cliente()
     if option == '2':
-        pass
+        editar_cliente()
+    if option == '3':
+        cliente_media()
 
 
 # Exibi clientes cadastrados no banco
@@ -157,6 +172,12 @@ def exibir_clientes_cadastrados():
     for cliente in clientes:
         print()
         print(f'nome: {cliente.nome}\nidade: {cliente.idade}\n')
+
+
+# Média clientes
+def cliente_media():
+    for cliente in clientes:
+        print(np.mean(cliente.idade, axis=1))
 
 
 # Cabeçalhos
