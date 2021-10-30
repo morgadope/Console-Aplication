@@ -2,7 +2,6 @@ from time import sleep
 from rich import print
 from classe import *
 from os import system
-import numpy as np
 
 # Variáveis da classe
 clientes = []
@@ -152,6 +151,9 @@ def menu_edit_cadastro():
      [1] Excluir cadastro por nome
      [2] Editar cadastro
      [3] Média clientes
+     [4] Ordem letra
+     [5] Ordem Nome
+     [6] Total idades
      [0] Voltar para  o inicio.     
      ''')
 
@@ -163,6 +165,12 @@ def menu_edit_cadastro():
         editar_cliente()
     if option == '3':
         cliente_media()
+    if option == '4':
+        ordem_letra()
+    if option == '5':
+        ordem_idade()
+    if option == '6':
+        total_idade()
 
 
 # Exibi clientes cadastrados no banco
@@ -176,8 +184,34 @@ def exibir_clientes_cadastrados():
 
 # Média clientes
 def cliente_media():
+    total_idades = 0
+    media = total_idades / len(clientes)
     for cliente in clientes:
-        print(np.mean(cliente.idade, axis=1))
+        total_idades += cliente.idade
+    print(f'A média de idades entre clientes é {media}')
+
+
+def ordem_letra():
+    total_nomes = []
+    total_nomes.sort()
+    for cliente in clientes:
+        total_nomes.append(cliente.nome)
+    print(total_nomes)
+
+
+def ordem_idade():
+    total_idades = []
+    total_idades.sort()
+    for cliente in clientes:
+        total_idades += cliente.idade
+    print(total_idades)
+
+
+def total_idade():
+    total_idades = 0
+    for cliente in clientes:
+        total_idades += cliente.idade
+    print(total_idades)
 
 
 # Cabeçalhos

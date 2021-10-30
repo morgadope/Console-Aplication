@@ -1,4 +1,5 @@
 from functions import *
 
-lista = [10, 20]
-print(statistics.mean(lista))
+lista = [1, 2, 3, 4, 5]
+lista.sort(reverse=True)
+print(lista)
